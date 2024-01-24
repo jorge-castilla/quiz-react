@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { ApiOptions, QuestionState, ResultsType } from '@/types/questionStore';
+import { ApiOptions, QuestionState } from '@/types/questionStore';
 // src/features/myFeatureSlice.js
 
 interface QuestionArg {
@@ -8,7 +8,7 @@ interface QuestionArg {
     difficulty: string;
 }
 
-export const fetchQuestions = createAsyncThunk(
+export const fetchQuestions: any = createAsyncThunk(
     'question/fetchQuestions',
     async (arg: QuestionArg) => {
         try {
@@ -104,10 +104,10 @@ export const questionSlice = createSlice({
                 state.questions.push(...action.payload.results);
                 state.loading = false;
             })
-            .addCase(fetchQuestions.pending, (state, action) => {
+            .addCase(fetchQuestions.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(fetchQuestions.rejected, (state, action) => {
+            .addCase(fetchQuestions.rejected, (state) => {
                 state.loading = false;
                 state.error = 'Hubo un error al cargar tus preguntas.';
             });

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import FixedTopContainer from '@/components/FixedTopContainer';
 import FixedBottomContainer from '@/components/FixedBottomContainer';
 import { useSelector, useDispatch } from 'react-redux';

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 import DifficultyButton from '@/components/Preferences/DifficultyButton';
 import RangeAndNumberInput from '@/components/Preferences/RangeAndNumberInput';
 import CategoryCard from '@/components/Preferences/CategoryCard';
