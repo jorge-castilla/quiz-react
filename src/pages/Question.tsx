@@ -135,7 +135,9 @@ function Question() {
                                 className="w-1/2 bg-teal-500 text-slate-800 rounded-lg hover:bg-teal-400 transition duration-100 h-12"
                                 onClick={nextQuestion}
                             >
-                                Next Question
+                                {currentQuestionIndex === questions.length - 1
+                                    ? 'Finish Quiz'
+                                    : 'Next Question'}
                             </button>
                         </div>
                     </FixedBottomContainer>
