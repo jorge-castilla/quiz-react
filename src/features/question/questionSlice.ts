@@ -69,7 +69,8 @@ export const questionSlice = createSlice({
             state.answers.push(action.payload);
             state.currentQuestionIndex++;
         },
-        calculateResults: (state) => {
+        calculateResults: (state, action) => {
+            state.answers.push(action.payload);
             state.results.correctAnswers = 0;
             state.results.category = state.ApiOptions.category;
             state.results.difficulty = state.ApiOptions.difficulty;

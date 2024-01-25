@@ -78,7 +78,7 @@ function Question() {
     const nextQuestion = () => {
         if (selectedAnswer === null) return;
         if (currentQuestionIndex === questions.length - 1) {
-            dispatch(calculateResults());
+            dispatch(calculateResults(answers[selectedAnswer]));
             navigate('/results');
             setSelectedAnswer(null);
         } else {
