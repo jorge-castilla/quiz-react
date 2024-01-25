@@ -47,7 +47,6 @@ const CategoryPicker: FC<CategoryPickerProps> = ({ setActiveSection }) => {
                 <div className="grid grid-cols-2 gap-3 mb-24 mt-14">
                     {categories.map((category) => (
                         <div
-                            className="col-12 col-md-6 col-lg-4"
                             key={category.id}
                             onClick={() => dispatch(setCategory(category))}
                         >
@@ -68,12 +67,7 @@ const CategoryPicker: FC<CategoryPickerProps> = ({ setActiveSection }) => {
                         <div className="font-bold">{selectedCategory.name}</div>
                     </div>
                     <button
-                        className={
-                            'w-1/3 bg-teal-500 text-slate-800 rounded-lg hover:bg-teal-400 transition duration-100 h-12' +
-                            (selectedCategory.id
-                                ? ''
-                                : ' opacity-50 cursor-not-allowed disabled')
-                        }
+                        className="w-1/3 bg-teal-500 text-slate-800 rounded-lg hover:bg-teal-400 transition duration-100 h-12 disabled:opacity-50 disabled:cursor-not-allowed"
                         disabled={!selectedCategory.id}
                         onClick={() => setActiveSection('options')}
                     >

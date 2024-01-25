@@ -1,4 +1,4 @@
-import {  useEffect } from 'react';
+import { useEffect, FC } from 'react';
 import DifficultyButton from '@/components/Preferences/DifficultyButton';
 import RangeAndNumberInput from '@/components/Preferences/RangeAndNumberInput';
 import CategoryCard from '@/components/Preferences/CategoryCard';
@@ -34,13 +34,17 @@ const difficulties: Difficulty[] = [
     },
 ];
 
+interface QuizOptionsProps {
+    setActiveSection: (section: string) => void;
+}
+
 interface Difficulty {
     name: string;
     value: string;
     colorClass: string;
     colorClassSelected: string;
 }
-const QuizOptions = () => {
+const QuizOptions: FC<QuizOptionsProps> = ({ setActiveSection }) => {
     const selectedCategory = useSelector(
         (state: RootState) => state.question.ApiOptions.category
     );
@@ -51,9 +55,11 @@ const QuizOptions = () => {
         (state: RootState) => state.question.ApiOptions.difficulty
     );
     const isLoading = useSelector((state: RootState) => state.question.loading);
+    const error = useSelector((state: RootState) => state.question.error);
     const questionsLength = useSelector(
         (state: RootState) => state.question.questions.length
     );
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const StartQuiz = () => {
@@ -70,9 +76,7 @@ const QuizOptions = () => {
             navigate('/question');
         }
     }, [questionsLength, isLoading, navigate]);
-    // const [selectedDifficulty, setSelectedDifficulty] = useState<
-    //   Difficulty['value']
-    // >(difficulties[0].value);
+
     return (
         <>
             <FixedTopContainer>
@@ -80,8 +84,12 @@ const QuizOptions = () => {
             </FixedTopContainer>
             <section className="grid grid-cols-1 gap-y-6 w-full text-slate-200 mb-auto mt-28">
                 <div>
-                    <div className="text-lg mb-2 font-bold">Category</div>
+                    <div className='flex mb-2'>
+                    <div className="text-lg font-bold">Category</div>
+                    <button className='ml-1 px-1 bg-teal-800 rounded-lg text-xs' onClick={() => setActiveSection('categories')}>Change</button>
+                    </div>
                     <CategoryCard
+                        onClick={() => setActiveSection('categories')}
                         name={selectedCategory.name}
                         src={selectedCategory.src}
                         isSelected={true}
@@ -122,12 +130,18 @@ const QuizOptions = () => {
                     />
                 </div>
                 <FixedBottomContainer>
-                    <div className="w-full flex justify-end">
+                    <div className="w-full flex flex-col items-end mr-2">
+                        {error && (
+                            <div className="text-red-500 text-sm mb-2 w-1/3 text-center">
+                                {error}
+                            </div>
+                        )}
                         <button
-                            className="w-1/3 bg-teal-500 text-slate-800 rounded-lg hover:bg-teal-400 transition duration-100 h-12"
+                            className="w-1/3 bg-teal-500 text-slate-800 rounded-lg hover:bg-teal-400 transition duration-100 h-12  disabled:opacity-50 disabled:cursor-not-allowed"
                             onClick={() => StartQuiz()}
+                            disabled={isLoading}
                         >
-                            Start
+                            {isLoading ? 'Loading...' : 'Start Quiz'}
                         </button>
                     </div>
                 </FixedBottomContainer>

@@ -10,7 +10,7 @@ interface QuestionArg {
 
 export const fetchQuestions: any = createAsyncThunk(
     'question/fetchQuestions',
-    async (arg: QuestionArg) => {
+    async (arg: QuestionArg, {rejectWithValue}) => {
         try {
             const { categoryId, amount, difficulty } = arg;
             const params = new URLSearchParams({
@@ -24,8 +24,8 @@ export const fetchQuestions: any = createAsyncThunk(
             );
             return await response.json();
         } catch (error) {
-            console.log(error);
-            return error;
+            console.log(error)
+            return rejectWithValue("Couldn't fetch questions, please try again later");
         }
     }
 );
@@ -102,15 +102,17 @@ export const questionSlice = createSlice({
         // Add reducers for additional action types here, and handle loading state as needed
         builder
             .addCase(fetchQuestions.fulfilled, (state, action) => {
+                state.error = null;
                 state.questions.push(...action.payload.results);
                 state.loading = false;
             })
             .addCase(fetchQuestions.pending, (state) => {
+                state.error = null;
                 state.loading = true;
             })
-            .addCase(fetchQuestions.rejected, (state) => {
+            .addCase(fetchQuestions.rejected, (state, action) => {
                 state.loading = false;
-                state.error = 'Hubo un error al cargar tus preguntas.';
+                state.error = action.payload;
             });
     },
 });

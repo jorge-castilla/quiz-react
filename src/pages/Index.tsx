@@ -36,7 +36,7 @@ const Index = () => {
       </p>
       <div className="flex justify-center">
         <button
-          className="bg-teal-500 text-slate-800 px-6 py-2 rounded-lg hover:bg-teal-400"
+          className="bg-teal-500 w-1/3 text-slate-800 px-6 py-3 rounded-lg hover:bg-teal-400"
           onClick={redirectToPreferences}
         >
           Start

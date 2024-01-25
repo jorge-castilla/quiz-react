@@ -10,7 +10,7 @@ const Preferences = () => {
       {activeSection === "categories" && (
         <CategoryPicker setActiveSection={setActiveSection} />
       )}
-      {activeSection === "options" && <QuizOptions />}
+      {activeSection === "options" && <QuizOptions setActiveSection={setActiveSection} />}
     </>
   );
 };
