@@ -89,7 +89,6 @@ const QuizOptions: FC<QuizOptionsProps> = ({ setActiveSection }) => {
                     <button className='ml-1 px-1 bg-teal-800 rounded-lg text-xs' onClick={() => setActiveSection('categories')}>Change</button>
                     </div>
                     <CategoryCard
-                        onClick={() => setActiveSection('categories')}
                         name={selectedCategory.name}
                         src={selectedCategory.src}
                         isSelected={true}
