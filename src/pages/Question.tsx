@@ -64,13 +64,6 @@ function Question() {
         (state: RootState) => state.question.questions[currentQuestionIndex]
     );
 
-    // const answers = useSelector((state: RootState) => {
-    //     return [
-    //         ...state.question.questions[currentQuestionIndex].incorrect_answers,
-    //         state.question.questions[currentQuestionIndex].correct_answer,
-    //     ];
-    // });
-
     const answers = useSelector(answersSelector);
 
     const labels = ['a', 'b', 'c', 'd'];
