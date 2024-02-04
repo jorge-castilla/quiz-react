@@ -20,7 +20,7 @@ export interface ResultsType {
 export interface QuestionState {
   questions: Array<any>;
   currentQuestionIndex: number;
-  answers: number[];
+  answers: string[];
   wrongAnswers: Array<any>;
   results: ResultsType;
   loading: boolean;
