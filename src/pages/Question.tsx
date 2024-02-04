@@ -125,7 +125,7 @@ function Question() {
                     <FixedBottomContainer>
                         <div className="flex w-full justify-end">
                             <button
-                                className="w-1/2 bg-teal-500 text-slate-800 rounded-lg hover:bg-teal-400 transition duration-100 h-12"
+                                className="w-1/3 bg-teal-500 text-slate-800 rounded-lg hover:bg-teal-400 transition duration-100 h-12"
                                 onClick={nextQuestion}
                             >
                                 {currentQuestionIndex === questions.length - 1
